@@ -45,7 +45,7 @@
 
 // loop through array to generate html
 */
-
+import {cart} from '../data/cart.js';
 
 let productsHTML='';
 products.forEach((product)=>{
