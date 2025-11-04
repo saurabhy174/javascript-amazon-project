@@ -45,3 +45,11 @@ export function removeFromCart(productId){   //create a new array, loop through 
     cart=newCart;
     saveToStorage();
 }
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+  if (matchingItem) {
+    matchingItem.deliveryOptionId = deliveryOptionId;
+    saveToStorage();
+  }
+}
