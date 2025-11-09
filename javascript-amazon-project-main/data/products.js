@@ -59,8 +59,21 @@ class Product{
 
  }
  
+//  const date = new Date();
+//  console.log(date);
+//  console.log(date.toLocaleTimeString());
 
+// console.log(this);
+// const obj2 = {
+//   a:2,
+//   b:this.a
+// };
 
+function logThis(){
+  console.log(this);     //not inside any object, so there is nothing for 'this' to point to
+}
+logThis();  // undefined 
+logThis.call('hello');   // inside a function we can change whatever we want
 
 export const products = [
   {
