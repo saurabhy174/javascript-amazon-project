@@ -75,6 +75,33 @@ function logThis(){
 logThis();  // undefined 
 logThis.call('hello');   // inside a function we can change whatever we want
 
+
+export let products = [];
+
+export function loadProducts(fun){
+     const xhr = new XMLHttpRequest();                             // genearet a new req object
+    xhr.addEventListener('load',()=>{                             //after the response has loaded, it is accesed and listenend
+       products =  JSON.parse(xhr.response ).map((productDetails)=>{          // we get result in json , so convert it in array
+       if(productDetails.type === 'clothing'){
+        return new Clothing(productDetails);
+       }
+
+       return new Product(productDetails);
+});
+         console.log('load products');  
+         
+         fun();
+    });
+
+
+     xhr.open ('GET','https://supersimplebackend.dev/products');   // take two request - one is type of reqst and other is url
+    xhr.send();  //this is asynchronous
+  
+  }
+
+
+
+/*
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -742,3 +769,4 @@ export const products = [
        return new Product(productDetails);
 });
 
+*/
