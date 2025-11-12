@@ -60,3 +60,19 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
     saveToStorage();
   }
 }
+
+export function loadCart(fun){
+     const xhr = new XMLHttpRequest();   
+     // genearet a new req object.
+
+    xhr.addEventListener('load',()=>{                             //after the response has loaded, it is accesed and listenend
+          const xhr = new XMLHttpRequest ();
+         console.log(xhr.response);  
+         fun();
+    });
+    
+     xhr.open ('GET','https://supersimplebackend.dev/products');   // take two request - one is type of reqst and other is url
+    xhr.send();  //this is asynchronous
+  
+  }
+
