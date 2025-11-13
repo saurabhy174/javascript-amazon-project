@@ -89,8 +89,10 @@ export function loadProductsFetch() {
        return new Product(productDetails);
     });
          console.log('load products');  
-         
-     });
+  }).catch((error)=>{
+    console.log('Unexpected error.please try again later');
+  });
+    
      return promise;
 }
 
@@ -114,6 +116,12 @@ export function loadProducts(fun){
          console.log('load products');  
          fun();
     });
+      
+    xhr.addEventListener('error',()=>{    //when we get an error, it get handled
+       console.log('Unexpected error.please try again later');
+    });
+
+
 
      xhr.open ('GET','https://supersimplebackend.dev/products');   // take two request - one is type of reqst and other is url
     xhr.send();  //this is asynchronous
