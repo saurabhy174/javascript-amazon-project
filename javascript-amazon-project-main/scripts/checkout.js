@@ -6,28 +6,23 @@ import {loadProducts, loadProductsFetch} from '../data/products.js';
 import {loadCart} from '../data/cart.js';
  
 async function loadPage(){
+            
+      await loadProductsFetch();
+
+      await new Promise((resolve)=>{                                                
+            loadCart(()=>{                       
+            resolve();
+         }); 
+      });    // we simply wait for the cart to load (promise to finish) without any then statement
    
-   await loadProductsFetch();
-
-   await new Promise((resolve)=>{                                                
-         loadCart(()=>{                       
-         resolve();
-      }); 
-    });
-
-     renderOrderSummary();
-     renderPaymentSummary();  
-}
-loadPage();
-
+      renderOrderSummary();
+      renderPaymentSummary();  
+      
+   }
+      loadPage();
+/*
 Promise.all([
     loadProductsFetch(),
-
-    new Promise((resolve)=>{                                                
-         loadProducts(()=>{                       
-         resolve('value1');
-      }); 
-    }),
 
     new Promise((resolve)=>{
             loadCart(()=>{

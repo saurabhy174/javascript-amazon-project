@@ -79,7 +79,7 @@ logThis.call('hello');   // inside a function we can change whatever we want
 export let products = [];
 
 export function loadProductsFetch() {
-    const promise =  fetch('https://supersimplebackend.dev/products').then((response)=>{
+    const promise =  fetch('https://supersimplebackend.dev/products').then((response)=>{   //fetch return a respons and we move to next step with it
           return response.json();
      }).then((productsData)=>{
         products =  productsData.map((productDetails)=>{          // we get result in json , so convert it in array
@@ -94,15 +94,16 @@ export function loadProductsFetch() {
      return promise;
 }
 
+/*
 loadProductsFetch().then(()=>{
   console.log('next step');
 });
-
+*/
 export function loadProducts(fun){
      const xhr = new XMLHttpRequest();   
      // genearet a new req object.
 
-    xhr.addEventListener('load',()=>{                             //after the response has loaded, it is accesed and listenend
+    xhr.addEventListener('load',()=>{     //callback used by xmlhttp                               //after the response has loaded, it is accesed and listenend
        products =  JSON.parse(xhr.response ).map((productDetails)=>{          // we get result in json , so convert it in array
        if(productDetails.type === 'clothing'){
         return new Clothing(productDetails);
