@@ -1,6 +1,7 @@
 export let cart;
 
 loadFromStorage();
+
 function loadFromStorage(){
        cart = JSON.parse(localStorage.getItem('cart'));
       
@@ -66,12 +67,11 @@ export function loadCart(fun){
      // genearet a new req object.
 
     xhr.addEventListener('load',()=>{                             //after the response has loaded, it is accesed and listenend
-          const xhr = new XMLHttpRequest ();
          console.log(xhr.response);  
          fun();
     });
     
-     xhr.open ('GET','https://supersimplebackend.dev/products');   // take two request - one is type of reqst and other is url
+     xhr.open ('GET','https://supersimplebackend.dev/cart');   // take two request - one is type of reqst and other is url
     xhr.send();  //this is asynchronous
   
   }
